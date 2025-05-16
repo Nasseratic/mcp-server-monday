@@ -8,10 +8,10 @@ export async function mondayGraphQL<T = any>(
   try {
     const response = await fetch(MONDAY_API_BASE_URL, {
       method: "POST",
-      headers: {
-        Authorization: MONDAY_API_KEY,
+      headers: new Headers({
+        Authorization: MONDAY_API_KEY || "",
         "Content-Type": "application/json",
-      },
+      }),
       body: JSON.stringify({ query, variables }),
     });
     if (!response.ok) {

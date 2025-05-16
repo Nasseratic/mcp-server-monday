@@ -1,0 +1,8 @@
+src/
+tests/
+.git/
+node_modules/
+.gitignore
+jest.config.js
+tsconfig.json
+pnpm-lock.yaml 

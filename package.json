@@ -1,9 +1,18 @@
 {
-  "name": "minimal-my-items-server",
-  "version": "1.0.0",
+  "name": "@nasseratic/monday-mcp-server",
+  "version": "0.1.0",
   "description": "Minimal Monday.com My Items MCP Server",
+  "main": "dist/mcp.js",
+  "bin": {
+    "mcp-monday": "bin/mcp.js"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ],
   "scripts": {
     "build": "tsc",
+    "prepare": "npm run build",
     "start": "bunx tsx src/mcp.ts",
     "test": "bun test"
   },
