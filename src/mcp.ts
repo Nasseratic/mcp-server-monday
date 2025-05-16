@@ -1,3 +1,4 @@
+import { config } from "dotenv";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio";
 import { z } from "zod";
@@ -5,6 +6,9 @@ import { getMyItems } from "./tools/getMyItems";
 import { addTask } from "./tools/addTask";
 import { updateTask } from "./tools/updateTask";
 import { getGroups } from "./tools/getGroups";
+
+// Load environment variables from .env file
+config();
 
 const server = new McpServer(
   { name: "minimal-my-items", version: "1.0.0" },
