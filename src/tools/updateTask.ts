@@ -28,7 +28,7 @@ export async function updateTask({
   columnValues: Record<string, any>;
 }): Promise<ToolReturn> {
   const mutation = `
-    mutation ($boardId: Int!, $itemId: Int!, $columnValues: JSON!) {
+    mutation ($boardId: ID!, $itemId: ID!, $columnValues: JSON!) {
       change_multiple_column_values(
         board_id: $boardId,
         item_id: $itemId,

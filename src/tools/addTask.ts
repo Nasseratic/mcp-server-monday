@@ -30,6 +30,28 @@ export async function addTask({
   itemName: string;
   columnValues?: Record<string, any>;
 }): Promise<ToolReturn> {
+  // Auto-assign task to current user
+  try {
+    // Get current user ID
+    const meQuery = `query { me { id } }`;
+    const { me } = await mondayGraphQL(meQuery, {});
+    if (!me || !me.id) {
+      return {
+        content: [
+          { type: "text", text: "Could not determine current user ID." },
+        ],
+      };
+    }
+    const userId = me.id;
+
+    // For the people column, using the simple format with just the user ID as a string
+    // This is the most reliable format according to Monday.com API documentation
+    columnValues.task_owner = userId.toString();
+  } catch (error: any) {
+    console.error("Error setting up task owner assignment:", error);
+    // Continue with item creation even if user assignment fails
+  }
+
   const mutation = `
     mutation ($boardId: ID!, $groupId: String!, $itemName: String!, $columnValues: JSON) {
       create_item(

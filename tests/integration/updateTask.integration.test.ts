@@ -4,7 +4,7 @@ import { getGroups } from "../../src/tools/getGroups";
 
 describe("updateTask integration", () => {
   const boardId = process.env.MONDAY_TASKS_BOARD_ID;
-  const columnValues = { status: { label: "Done" } };
+  const columnValues = { task_status: { label: "Done" } };
 
   it("should update a task on the board", async () => {
     if (!boardId) {
