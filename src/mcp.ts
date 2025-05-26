@@ -5,6 +5,7 @@ import { z } from "zod";
 import { getMyItems } from "./tools/getMyItems";
 import { addTask } from "./tools/addTask";
 import { updateTask } from "./tools/updateTask";
+import { updateTaskStatus } from "./tools/updateTaskStatus";
 import { getGroups } from "./tools/getGroups";
 
 // Load environment variables from .env file
@@ -67,8 +68,32 @@ server.tool(
 );
 
 server.tool(
+  "update-task-status",
+  "Update the status of a task (item) on the Monday.com board.",
+  {
+    itemId: z.string().describe("The ID of the item to update."),
+    newStatus: z
+      .string()
+      .describe("The new status (e.g., 'in progress', 'in review', 'done')."),
+  },
+  async (args: any) => {
+    if (!MONDAY_TASKS_BOARD_ID) {
+      return {
+        content: [{ type: "text", text: "MONDAY_TASKS_BOARD_ID is not set" }],
+      };
+    }
+    const { itemId, newStatus } = args;
+    return await updateTaskStatus({
+      boardId: MONDAY_TASKS_BOARD_ID,
+      itemId,
+      newStatus,
+    });
+  }
+);
+
+server.tool(
   "update-task",
-  "Update a task (item) on the Monday.com board.",
+  "Update a task (item) on the Monday.com board with custom column values.",
   {
     itemId: z.string().describe("The ID of the item to update."),
     columnValues: z

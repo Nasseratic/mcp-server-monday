@@ -2,6 +2,25 @@
 
 A Monday.com Model Context Protocol (MCP) server implementation in TypeScript for handling Monday.com task-related operations.
 
+## Available Tools
+
+This MCP server provides the following tools for interacting with Monday.com:
+
+- **my-items**: Get items assigned to the current user for the configured board
+- **add-task**: Add a new task (item) to the Monday.com board
+- **update-task-status**: Update the status of a task (item) with intelligent status matching
+- **update-task**: Update a task (item) with custom column values (advanced)
+- **get-groups**: Get all groups from the Monday.com board
+
+### Status Update Examples
+
+The `update-task-status` tool provides intelligent status matching. You can use natural language like:
+
+- "in progress" - matches "In Progress", "Working", "WIP", etc.
+- "done" - matches "Done", "Complete", "Completed", "Finished", etc.
+- "in review" - matches "In Review", "Review", "Pending Review", etc.
+- "stuck" - matches "Stuck", "Blocked", "Blocker", etc.
+
 ## Getting Started
 
 ### Option 1: Direct Usage (Recommended)
