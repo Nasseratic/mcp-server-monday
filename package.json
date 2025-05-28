@@ -1,6 +1,6 @@
 {
   "name": "@nasseratic/monday-mcp-server",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "Minimal Monday.com My Items MCP Server",
   "main": "dist/index.js",
   "bin": {

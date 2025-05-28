@@ -7,6 +7,7 @@ import { addTask } from "./tools/addTask";
 import { updateTask } from "./tools/updateTask";
 import { updateTaskStatus } from "./tools/updateTaskStatus";
 import { getGroups } from "./tools/getGroups";
+import { getItemDetails } from "./tools/getItemDetails";
 
 // Load environment variables from .env file
 config();
@@ -127,6 +128,26 @@ server.tool(
     }
     return await getGroups({
       boardId: MONDAY_TASKS_BOARD_ID,
+    });
+  }
+);
+
+server.tool(
+  "get-item-details",
+  "Get detailed information for a specific item including all its columns and values.",
+  {
+    itemId: z.string().describe("The ID of the item to get details for."),
+  },
+  async (args: any) => {
+    if (!MONDAY_TASKS_BOARD_ID) {
+      return {
+        content: [{ type: "text", text: "MONDAY_TASKS_BOARD_ID is not set" }],
+      };
+    }
+    const { itemId } = args;
+    return await getItemDetails({
+      boardId: MONDAY_TASKS_BOARD_ID,
+      itemId,
     });
   }
 );
