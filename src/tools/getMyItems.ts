@@ -115,7 +115,14 @@ export async function getMyItems({
       if (aiDescCol && aiDescCol.text && aiDescCol.text.trim()) {
         aiDescription = aiDescCol.text.trim();
       }
-      return `- ${i.name} (ID: ${i.id})\n  Status: ${status}${
+
+      // Build ID information with both numeric and human-friendly identifiers
+      const itemId = i.column_values.find(
+        (c: any) => c.type === "item_id"
+      )?.text;
+      const idInfo = `ID: ${i.id}${itemId ? `, Item ID: ${itemId}` : ""}`;
+
+      return `- ${i.name} (${idInfo})\n  Status: ${status}${
         aiDescription ? `\n  AI Description: ${aiDescription}` : ""
       }`;
     })

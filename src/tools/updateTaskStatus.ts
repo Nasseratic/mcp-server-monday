@@ -197,6 +197,12 @@ export async function updateTaskStatus({
         ) {
           id
           name
+          column_values {
+            id
+            type
+            value
+            text
+          }
         }
       }
     `;
@@ -227,11 +233,19 @@ export async function updateTaskStatus({
       };
     }
 
+    // Build ID information with both numeric and human-friendly identifiers
+    const humanReadableId = item.column_values?.find(
+      (c: any) => c.type === "item_id"
+    )?.text;
+    const idInfo = `ID: ${item.id}${
+      humanReadableId ? `, Item ID: ${humanReadableId}` : ""
+    }`;
+
     return {
       content: [
         {
           type: "text",
-          text: `Updated item '${item.name}' (ID: ${item.id}) status to "${statusValue}" on board ${boardId}.`,
+          text: `Updated item '${item.name}' (${idInfo}) status to "${statusValue}" on board ${boardId}.`,
         },
       ],
     };

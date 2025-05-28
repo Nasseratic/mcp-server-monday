@@ -62,6 +62,12 @@ export async function addTask({
       ) {
         id
         name
+        column_values {
+          id
+          type
+          value
+          text
+        }
       }
     }
   `;
@@ -83,11 +89,18 @@ export async function addTask({
         ],
       };
     }
+
+    // Build ID information with both numeric and human-friendly identifiers
+    const itemId = item.column_values?.find(
+      (c: any) => c.type === "item_id"
+    )?.text;
+    const idInfo = `ID: ${item.id}${itemId ? `, Item ID: ${itemId}` : ""}`;
+
     return {
       content: [
         {
           type: "text",
-          text: `Created item '${item.name}' (ID: ${item.id}) on board ${boardId}.`,
+          text: `Created item '${item.name}' (${idInfo}) on board ${boardId}.`,
         },
       ],
     };
