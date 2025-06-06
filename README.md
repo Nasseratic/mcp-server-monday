@@ -11,6 +11,7 @@ This MCP server provides the following tools for interacting with Monday.com:
 - **update-task-status**: Update the status of a task (item) with intelligent status matching
 - **update-task**: Update a task (item) with custom column values (advanced)
 - **get-groups**: Get all groups from the Monday.com board
+- **get-item-details**: Get detailed information for a specific item including all its columns and values
 
 ### Status Update Examples
 
