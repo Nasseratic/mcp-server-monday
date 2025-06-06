@@ -16,6 +16,7 @@ describe("ID Display Verification", () => {
 
     // Check if the result contains human-readable Item ID (like TCON-147)
     const hasItemId = result.content[0].text.includes("Item ID:");
+    expect(hasItemId).toBe(true);
     console.log("getMyItems output sample:", result.content[0].text);
     console.log("Contains human-readable Item ID:", hasItemId);
   });
@@ -52,6 +53,7 @@ describe("ID Display Verification", () => {
 
     // Check if the result contains human-readable Item ID (like TCON-147)
     const hasItemId = result.content[0].text.includes("Item ID:");
+    expect(hasItemId).toBe(true);
     console.log("addTask output sample:", result.content[0].text);
     console.log("Contains human-readable Item ID:", hasItemId);
   });
