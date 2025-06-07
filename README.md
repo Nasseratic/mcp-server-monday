@@ -38,15 +38,15 @@ Use the package directly with pnpm dlx without cloning:
          "command": "pnpm",
          "args": ["dlx", "@nasseratic/monday-mcp-server@latest"],
          "env": {
-           "MONDAY_API_TOKEN": "your_monday_api_token",
-           "MONDAY_TASKS_BOARD_ID": "your_monday_board_id"
-         }
-       }
-     }
-   }
-   ```
+          "MONDAY_API_KEY": "your_monday_api_key",
+          "MONDAY_TASKS_BOARD_ID": "your_monday_board_id"
+        }
+      }
+    }
+  }
+  ```
 
-   - `MONDAY_API_TOKEN`: Your Monday.com API token (v2 Token)
+   - `MONDAY_API_KEY`: Your Monday.com API token.
    - `MONDAY_TASKS_BOARD_ID`: The ID of the Monday.com board containing your tasks
 
 ### Option 2: Development Setup
@@ -78,13 +78,13 @@ If you want to modify the source code or contribute:
          "args": ["start"],
          "cwd": "/path/to/your/mcp-server-monday",
          "env": {
-           "MONDAY_API_TOKEN": "your_monday_api_token",
-           "MONDAY_TASKS_BOARD_ID": "your_monday_board_id"
-         }
-       }
-     }
-   }
-   ```
+          "MONDAY_API_KEY": "your_monday_api_key",
+          "MONDAY_TASKS_BOARD_ID": "your_monday_board_id"
+        }
+      }
+    }
+  }
+  ```
 
    - Replace `/path/to/your/mcp-server-monday` with the actual path where you cloned the repository.
 
